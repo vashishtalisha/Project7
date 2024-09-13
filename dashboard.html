@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}</style>
+<body>
+    <div class="dashboard">
+        <h1>Admin Dashboard</h1>
+        <div class="card">
+            <h2>Add Employee</h2>
+            <form id="addEmployeeForm">
+                <label for="employeeUsername">Employee Username:</label>
+                <input type="text" id="employeeUsername" name="employeeUsername" required>
+                <label for="employeePassword">Employee Password:</label>
+                <input type="password" id="employeePassword" name="employeePassword" required>
+                <button type="submit">Add Employee</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>Assign Task</h2>
+            <form id="assignTaskForm">
+                <label for="employeeSelect">Employee:</label>
+                <select id="employeeSelect" name="employeeSelect" required></select>
+                <label for="taskDescription">Task Description:</label>
+                <textarea id="taskDescription" name="taskDescription" required></textarea>
+                <label for="dueDate">Due Date:</label>
+                <input type="date" id="dueDate" name="dueDate" required>
+                <button type="submit">Assign Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js">// Assuming you have a way to store and retrieve employee and task data
+
+        // Populate employee select options
+        function populateEmployeeSelect() {
+            const employeeSelect = document.getElementById('employeeSelect');
+            // Replace with your logic to fetch employee data from storage or API
+            const employees = ['employee1', 'employee2', 'employee3'];
+            employees.forEach(employee => {
+                const option = document.createElement('option');
+                option.value = employee;
+                option.text = employee;
+                employeeSelect.appendChild(option);
+            });
+        }
+        
+        // Handle form submissions
+        document.getElementById('addEmployeeForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('employeeUsername').value;
+            const password = document.getElementById('employeePassword').value;
+            // Replace with your logic to store employee data
+            console.log('Adding employee:', username, password);
+        });
+        
+        document.getElementById('assignTaskForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const employee = document.getElementById('employeeSelect').value;
+            const description = document.getElementById('taskDescription').value;
+            const dueDate = document.getElementById('dueDate').value;
+            // Replace with your logic to assign the task
+            console.log('Assigning task:', employee, description, dueDate);
+        });
+        
+        // Initialize
+        populateEmployeeSelect();</script>
+</body>
+</html>
